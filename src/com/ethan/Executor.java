@@ -208,25 +208,25 @@ public class Executor {
                 case "#sub" -> val = Internals.sub;
             }
 
-            if(Internals.var.containsKey(args[0])) {
-                Internals.var.replace(args[0], val);
+            if( Internals.var.containsKey(args[0]) ) {
+                Internals.var.replace( args[0], val );
                 return;
             }
-            Internals.var.put(args[0], val);
+            Internals.var.put( args[0], val );
             return;
         }
 
-        int value = (args[1].matches("-?[0-9]+"))? Integer.parseInt(args[1]) : 0;
+        int value = ( args[1].matches( "-?[0-9]+" ) )? Integer.parseInt( args[1] ) : 0;
 
-        if(Internals.var.containsKey(args[0])) {
-            Internals.var.replace(args[0], value);
+        if( Internals.var.containsKey(args[0]) ) {
+            Internals.var.replace( args[0], value );
             return;
         }
         else if(Internals.var.containsKey(args[1])) {
-            value = Internals.var.get(args[1]);
+            value = Internals.var.get( args[1] );
         }
 
-        Internals.var.put(args[0], value);
+        Internals.var.put( args[0], value );
     }
 
     /*
@@ -238,7 +238,7 @@ public class Executor {
         String b = " ";
 
         try {
-            BufferedReader r = new BufferedReader(new FileReader((File) fileName));
+            BufferedReader r = new BufferedReader( new FileReader( (File) fileName ) );
             int i = 0;
 
             while (i < l) {
@@ -246,7 +246,7 @@ public class Executor {
                 i++;
             }
 
-            assert b != null && b.matches(Internals.EVAL_SYNTAX);
+            assert b != null && b.matches( Internals.EVAL_SYNTAX );
 
             Integer lhs = null;
             Integer rhs = null;

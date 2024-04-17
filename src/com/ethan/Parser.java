@@ -17,7 +17,7 @@ public class Parser {
             Line l = new Line();
 
             while( ( l.set( r.readLine() ) ) != null ) {
-                if(l.str.isEmpty()) continue;
+                if( l.str.isBlank() ) continue;
 
                 if( !l.str.matches( "(^:end$)|^[a-zA-Z]+: ( ?(.+))$" ) ) {
                     System.err.println("Syntax error at: " + mainFile + ':' + l.getLine() + "'" + l.str + "'");
@@ -28,29 +28,26 @@ public class Parser {
                 String[] args = l.str.substring( l.str.indexOf(' ') ).trim().split(" ");
 
                 switch(fn) {
-                    case "setv:" -> Executor.handle(FN_SETV, args);
-                    case "out:" -> Executor.handle(FN_OUT, args);
+                    case "setv:" -> Executor.handle( FN_SETV, args );
+                    case "out:" -> Executor.handle( FN_OUT, args );
 
                     case "eval:" -> {
-                        int line = Executor.handle(FN_EVAL, args, mainFile, l.getLine());
+                        int line = Executor.handle( FN_EVAL, args, mainFile, l.getLine() );
                         int x = l.getLine();
                         while(x != line + 1) {
-                            l.set(r.readLine());
+                            l.set( r.readLine() );
                             x++;
                         }
                     }
 
-                    case "expr:" -> Executor.handle(FN_EXPR, args, l.str);
-                    case "add:" -> Executor.handle(FN_ADD, args);
-                    case "div:" -> Executor.handle(FN_DIV, args);
-                    case "sub:" -> Executor.handle(FN_SUB, args);
-                    case "mult:" -> Executor.handle(FN_MULT, args);
+                    case "expr:" -> Executor.handle( FN_EXPR, args, l.str );
+                    case "add:" -> Executor.handle( FN_ADD, args );
+                    case "div:" -> Executor.handle( FN_DIV, args );
+                    case "sub:" -> Executor.handle( FN_SUB, args );
+                    case "mult:" -> Executor.handle( FN_MULT, args );
                 }
             }
-
-
             r.close();
-
         } catch(IOException ignored) {
 
         }
