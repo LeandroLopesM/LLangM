@@ -266,6 +266,8 @@ public class Executor {
             }
 
             boolean isTrue = false;
+            assert lhs != null;
+            assert rhs != null;
 
             switch(args[1]) {
                 case "-gt" -> isTrue = lhs > rhs;
