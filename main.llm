@@ -1,0 +1,17 @@
+add: 15 5
+setv: res #add
+
+eval: res -eq 20
+    out: "É igual"
+:end
+
+eval: res -lt 40
+    out: "Ainda é"
+    setv: res 10
+:end
+
+eval: res -gt 35
+    out: "Não é mais :("
+:end
+
+out: "Valor final: {res}"
